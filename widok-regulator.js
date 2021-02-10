@@ -13,7 +13,7 @@ class Regulator {
   constructor(options) {
     this.options = {
       initialValues: {},
-      friction: 1.1,
+      friction: 0.1,
       amplification: 0.005,
       saturation: Infinity,
     };
@@ -77,7 +77,7 @@ class Regulator {
             -this.options.saturation
           );
           property.value += property.dx * this.options.amplification;
-          property.dx /= this.options.friction;
+          property.dx /= this.options.friction + 1;
         }
         diff = property.target - property.value;
         if (
